@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import ActressCard from './components/ActressCard.jsx'
+import PersonCard from './components/PersonCard.jsx'
+import ListSelection from './components/ListSelection.jsx'
 
 function App() {
   const [actresses, setActresses] = useState([]);
   const [actors, setActors] = useState([]);
+  const [selected, setSelected] = useState('actresses');
+
+
   function fetchActresses() {
     axios.get("https://lanciweb.github.io/demo/api/actresses/").then((act) => { setActresses(act.data); })
   }
@@ -13,19 +17,30 @@ function App() {
     axios.get("https://lanciweb.github.io/demo/api/actors/").then((act) => { setActors(act.data); })
   }
 
+
+
+
+
   useEffect(fetchActresses, [])
   useEffect(fetchActors, [])
+  const newActors = actors.map((actor) => ({ ...actor, gender: 'male' }))
+  const newActresses = actresses.map((actress) => ({ ...actress, gender: 'female' }))
+  const academy = ([...newActors, ...newActresses]);
+
   return (
     <div className="container">
       <h1>react-api</h1>
-
-      {actresses.map(actress => (
-        <ActressCard key={actress.id} actress={actress} />
-      ))}
-
-      {actors.map(actor => (
-        <ActressCard key={actor.id} actress={actor} />
-      ))}
+      <ListSelection selected={selected} setSelected={setSelected} />
+      {(selected === 'actresses' || selected === 'both') ?
+        (selected === 'both') ? (academy.map(person => (
+          <PersonCard key={person.gender + person.id} person={person} />
+        ))) :
+          (actresses.map(person => (
+            <PersonCard key={person.id} person={person} />
+          ))) : actors.map(person => (
+            <PersonCard key={person.id} person={person} />
+          ))
+      }
 
 
     </div>
