@@ -4,7 +4,10 @@ function PersonCard({ person }) {
         <div className="card actress-card mb-3">
             <div className="row g-0">
                 <div className="col-md-4">
-                    <img src={person.image} alt={person.name} className="img-fluid rounded-start" />
+                    <img src={person.image} onError={({ currentTarget }) => {
+                        currentTarget.onerror = null; // prevents looping
+                        currentTarget.src = "https://picsum.photos/200/300";
+                    }} alt={person.name} className="img-fluid rounded-start single-card-img" />
                 </div>
                 <div className="col-md-8">
                     <div className="card-body">

@@ -18,3 +18,7 @@ p.card-text.awards {
   color: #ccc;
   text-shadow: -0.5px -0.5px 1px #000;
 }
+
+.single-card-img {
+  max-width: 200px;
+}
