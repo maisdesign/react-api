@@ -1,0 +1,7 @@
+# Agents & AI tooling
+.github/agents
+.vscode/
+
+# Dependencies
+node_modules/
+package-lock.json
