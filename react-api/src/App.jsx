@@ -3,18 +3,31 @@ import axios from 'axios'
 import ActressCard from './components/ActressCard.jsx'
 
 function App() {
-  const [actresses, setActresses] = useState([])
+  const [actresses, setActresses] = useState([]);
+  const [actors, setActors] = useState([]);
   function fetchActresses() {
-    axios.get("https://lanciweb.github.io/demo/api/actresses/").then((act) => { setActresses(act.data); console.log(act) })
+    axios.get("https://lanciweb.github.io/demo/api/actresses/").then((act) => { setActresses(act.data); })
+  }
+
+  function fetchActors() {
+    axios.get("https://lanciweb.github.io/demo/api/actors/").then((act) => { setActors(act.data); })
   }
 
   useEffect(fetchActresses, [])
+  useEffect(fetchActors, [])
   return (
-    <div>
+    <div className="container">
       <h1>react-api</h1>
-      {actresses.map(actress => <ul key={actress.id} className="card actress-card">
-        {<ActressCard actress={actress} />}
-      </ul>)}
+
+      {actresses.map(actress => (
+        <ActressCard key={actress.id} actress={actress} />
+      ))}
+
+      {actors.map(actor => (
+        <ActressCard key={actor.id} actress={actor} />
+      ))}
+
+
     </div>
   )
 }
