@@ -1,7 +1,7 @@
 function PersonCard({ person }) {
 
     return <>
-        <div className="card actress-card mb-3">
+        <div className="card person-card mb-3">
             <div className="row g-0">
                 <div className="col-md-4">
                     <img src={person.image} onError={({ currentTarget }) => {

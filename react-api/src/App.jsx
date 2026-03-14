@@ -17,30 +17,32 @@ function App() {
     axios.get("https://lanciweb.github.io/demo/api/actors/").then((act) => { setActors(act.data); })
   }
 
-
-
-
-
   useEffect(fetchActresses, [])
   useEffect(fetchActors, [])
   const newActors = actors.map((actor) => ({ ...actor, gender: 'male' }))
   const newActresses = actresses.map((actress) => ({ ...actress, gender: 'female' }))
   const academy = ([...newActors, ...newActresses]);
 
+
+  function getList(select) {
+    if (select === 'actresses') {
+      console.log(academy)
+      return actresses
+    } else if (select === 'actors') {
+      return actors
+    } else {
+      console.log('Se scelgo both' + academy)
+      return academy
+    }
+  }
+
   return (
     <div className="container">
       <h1>react-api</h1>
-      <ListSelection selected={selected} setSelected={setSelected} />
-      {(selected === 'actresses' || selected === 'both') ?
-        (selected === 'both') ? (academy.map(person => (
-          <PersonCard key={person.gender + person.id} person={person} />
-        ))) :
-          (actresses.map(person => (
-            <PersonCard key={person.id} person={person} />
-          ))) : actors.map(person => (
-            <PersonCard key={person.id} person={person} />
-          ))
-      }
+      <ListSelection setSelected={setSelected} />
+      {(getList(selected).map(person => (
+        <PersonCard key={person.gender + person.id} person={person} />
+      )))}
 
 
     </div>
