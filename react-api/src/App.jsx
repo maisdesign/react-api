@@ -41,7 +41,7 @@ function App() {
       <h1>react-api</h1>
       <ListSelection setSelected={setSelected} />
       {(getList(selected).map(person => (
-        <PersonCard key={person.gender + person.id} person={person} />
+        <PersonCard key={(selected === 'both') ? (person.gender + person.id) : (person.id)} person={person} />
       )))}
 
 
