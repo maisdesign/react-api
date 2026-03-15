@@ -1,7 +1,7 @@
 function ListSelection({ setSelected }) {
     return <>
 
-        <div className="form-floating">
+        <div className="form-floating my-3">
             <select className="form-select" id="floatingSelect" aria-label="Floating label select example" onChange={(e) => setSelected(e.target.value)}>
                 <option defaultValue>What would you like to see?</option>
                 <option value="actresses">Actresses Only</option>

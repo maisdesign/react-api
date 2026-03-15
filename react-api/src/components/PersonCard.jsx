@@ -7,7 +7,7 @@ function PersonCard({ person }) {
                     <img src={person.image} onError={({ currentTarget }) => {
                         currentTarget.onerror = null; // prevents looping
                         currentTarget.src = "https://picsum.photos/200/300";
-                    }} alt={person.name} className="img-fluid rounded-start single-card-img" />
+                    }} alt={person.name} className="rounded-start single-card-img" />
                 </div>
                 <div className="col-md-8">
                     <div className="card-body">
@@ -15,7 +15,7 @@ function PersonCard({ person }) {
                         <p className="card-text">{person.birth_year}</p>
                         <p className="card-text">{person.nationality}</p>
                         <p className="card-text">{person.biography}</p>
-                        <p className="card-text awards">{(Array.isArray(person.awards)) ? person.awards.join(',') : person.awards}</p>
+                        <p className="card-text awards">{(Array.isArray(person.awards)) ? person.awards.join(', ') : person.awards}</p>
                     </div>
                 </div>
             </div>
