@@ -15,7 +15,7 @@ function PersonCard({ person }) {
                         <p className="card-text">{person.birth_year}</p>
                         <p className="card-text">{person.nationality}</p>
                         <p className="card-text">{person.biography}</p>
-                        <p className="card-text awards">{person.awards}</p>
+                        <p className="card-text awards">{(Array.isArray(person.awards)) ? person.awards.join(',') : person.awards}</p>
                     </div>
                 </div>
             </div>

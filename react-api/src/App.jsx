@@ -26,12 +26,10 @@ function App() {
 
   function getList(select) {
     if (select === 'actresses') {
-      console.log(academy)
       return actresses
     } else if (select === 'actors') {
       return actors
     } else {
-      console.log('Se scelgo both' + academy)
       return academy
     }
   }
