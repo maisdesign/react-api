@@ -38,11 +38,11 @@ function App() {
     <div className="container">
       <h1>react-api</h1>
       <ListSelection setSelected={setSelected} />
-      {(getList(selected).map(person => (
-        <PersonCard key={(selected === 'both') ? (person.gender + person.id) : (person.id)} person={person} />
-      )))}
-
-
+      <div className="row">
+        {(getList(selected).map(person => (
+          <PersonCard key={(selected === 'both') ? (person.gender + person.id) : (person.id)} person={person} />
+        )))}
+      </div>
     </div>
   )
 }
