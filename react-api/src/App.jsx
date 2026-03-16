@@ -11,11 +11,11 @@ function App() {
 
 
   function fetchActresses() {
-    axios.get("https://lanciweb.github.io/demo/api/actresses/").then((act) => { setActresses(act.data); }).catch((error) => setApiError('Actresses casting is not ready, please wait'))
+    axios.get("https://lanciweb.github.io/demo/api/actresses/").then((act) => { setActresses(act.data); }).catch(() => setApiError('Actresses casting is not ready, please wait'))
   }
 
   function fetchActors() {
-    axios.get("https://lanciweb.github.io/demo/api/actors/").then((act) => { setActors(act.data); }).catch((error) => setApiError('Actors casting is not ready, please wait'))
+    axios.get("https://lanciweb.github.io/demo/api/actors/").then((act) => { setActors(act.data); }).catch(() => setApiError('Actors casting is not ready, please wait'))
   }
 
   useEffect(fetchActresses, [])
