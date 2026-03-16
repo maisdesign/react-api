@@ -7,14 +7,15 @@ function App() {
   const [actresses, setActresses] = useState([]);
   const [actors, setActors] = useState([]);
   const [selected, setSelected] = useState('actresses');
+  const [apiError, setApiError] = useState(null);
 
 
   function fetchActresses() {
-    axios.get("https://lanciweb.github.io/demo/api/actresses/").then((act) => { setActresses(act.data); })
+    axios.get("https://lanciweb.github.io/demo/api/actresses/").then((act) => { setActresses(act.data); }).catch((error) => setApiError('Actresses casting is not ready, please wait'))
   }
 
   function fetchActors() {
-    axios.get("https://lanciweb.github.io/demo/api/actors/").then((act) => { setActors(act.data); })
+    axios.get("https://lanciweb.github.io/demo/api/actors/").then((act) => { setActors(act.data); }).catch((error) => setApiError('Actors casting is not ready, please wait'))
   }
 
   useEffect(fetchActresses, [])
@@ -39,9 +40,11 @@ function App() {
       <h1>react-api</h1>
       <ListSelection setSelected={setSelected} />
       <div className="row">
-        {(getList(selected).map(person => (
-          <PersonCard key={(person.gender) ? (person.gender + person.id) : (person.id)} person={person} />
-        )))}
+        {(!apiError) ?
+          (getList(selected).map(person => (
+            <PersonCard key={(person.gender) ? (person.gender + person.id) : (person.id)} person={person} />
+          ))) : <div className="btn btn-danger">{apiError}</div>
+        }
       </div>
     </div>
   )
