@@ -40,7 +40,7 @@ function App() {
       <ListSelection setSelected={setSelected} />
       <div className="row">
         {(getList(selected).map(person => (
-          <PersonCard key={(selected === 'both') ? (person.gender + person.id) : (person.id)} person={person} />
+          <PersonCard key={(person.gender) ? (person.gender + person.id) : (person.id)} person={person} />
         )))}
       </div>
     </div>
